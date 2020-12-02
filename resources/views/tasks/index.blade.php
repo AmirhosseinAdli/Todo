@@ -6,6 +6,11 @@
             <h1>لیست کارها</h1>
             <a href="{{route('tasks.create')}}" class="btn btn-primary">اضافه کردن</a>
         </div>
+
+        @if(session('status'))
+            <div class="alert alert-success">{{session('status')}}</div>
+        @endif
+
         @forelse($tasks as $task)
             <div class="card">
                 <div class="card-body">
