@@ -17,6 +17,9 @@
                     <h5 class="card-title">{{  $task->title  }}</h5>
                     <span class="badge badge-primary">{{  $task->done ? 'انجام شده' : 'انجام نشده' }}</span>
                 </div>
+                <div class="card-footer">
+                    <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
+                </div>
             </div>
         @empty
             <div class="alert alert-info">شما هنوز کاری اضافه نکرده اید</div>
