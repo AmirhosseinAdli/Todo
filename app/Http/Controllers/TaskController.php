@@ -16,7 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = auth()->user()->tasks;
         return view('tasks.index', compact('tasks'));
     }
 
@@ -39,7 +39,7 @@ class TaskController extends Controller
     public function store(CreateTaskRequest $request)
     {
         $task = Task::create([
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'title' => $request->title,
             'done' => $request->get('done', false),
         ]);

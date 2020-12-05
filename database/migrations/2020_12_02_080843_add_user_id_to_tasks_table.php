@@ -15,7 +15,7 @@ class AddUserIdToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->foreignIdFor(User::class)->after('id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->references('id')->on('users')->cascadeOnDelete();
         });
     }
 }
