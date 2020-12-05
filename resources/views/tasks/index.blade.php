@@ -17,8 +17,15 @@
                     <h5 class="card-title">{{  $task->title  }}</h5>
                     <span class="badge badge-primary">{{  $task->done ? 'انجام شده' : 'انجام نشده' }}</span>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex flex-column">
                     <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
+                    <a href="{{route('tasks.delete',[$task])}}">حذف از طریق متد get</a>
+                    <form action="{{route('tasks.destroy',[$task])}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('آیا مطمئن هستید؟')">حذف از طریق متد delete
+                        </button>
+                    </form>
                 </div>
             </div>
         @empty
