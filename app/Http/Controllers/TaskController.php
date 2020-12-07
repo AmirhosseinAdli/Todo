@@ -22,8 +22,7 @@ class TaskController extends Controller
 
     public function store(CreateTaskRequest $request)
     {
-        $task = Task::create([
-            'user_id' => auth()->user()->id,
+        $task = auth()->user()->tasks()->create([
             'title' => $request->title,
             'done' => $request->get('done', false),
         ]);
@@ -32,7 +31,10 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        //
+        if ($task->user_id == auth()->id())
+            return $task;
+        else
+            return redirect()->route('tasks.index');
     }
 
     public function edit(Task $task)

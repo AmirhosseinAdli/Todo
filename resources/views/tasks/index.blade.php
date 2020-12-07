@@ -19,6 +19,7 @@
                 </div>
                 <div class="card-footer d-flex flex-column">
                     <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
+                    <a href="{{route('tasks.show',[$task])}}">نمایش</a>
                     <a href="{{route('tasks.delete',[$task])}}">حذف از طریق متد get</a>
                     <form action="{{route('tasks.destroy',[$task])}}" method="post">
                         @csrf
