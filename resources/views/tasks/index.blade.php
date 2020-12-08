@@ -12,9 +12,10 @@
         @endif
 
         @forelse($tasks as $task)
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">{{  $task->title  }}</h5>
+                    <h5 class="card-title">
+                        {{  $task->title  }} <a href="{{route('tasks.show',$task)}}"> نمایش</a></h5>
                     <span class="badge badge-primary">{{  $task->done ? 'انجام شده' : 'انجام نشده' }}</span>
                 </div>
                 <div class="card-footer d-flex flex-column">

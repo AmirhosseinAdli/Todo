@@ -32,9 +32,9 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         if ($task->user_id == auth()->id())
-            return $task;
+            return view('tasks.show')->withTask($task);
         else
-            return redirect()->route('tasks.index');
+            return abort(404);
     }
 
     public function edit(Task $task)
