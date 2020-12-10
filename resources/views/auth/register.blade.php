@@ -22,6 +22,12 @@
             </div>
 
             <div class="form-group">
+                <label for="mobile">موبایل</label>
+                <input type="text" class="form-control" id="mobile" name="mobile">
+                @error('mobile') <p class="m-0">{{$message}}</p> @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="password">رمز</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>

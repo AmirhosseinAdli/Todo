@@ -12,8 +12,8 @@
             @csrf
 
             <div class="form-group">
-                <label for="email">ایمیل</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <label for="username">ایمیل یا شماره</label>
+                <input type="text" class="form-control" id="username" name="username">
             </div>
 
             <div class="form-group">

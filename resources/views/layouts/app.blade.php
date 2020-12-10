@@ -69,6 +69,13 @@
 </head>
 <body>
 <div class="m-5">
+    @if(auth()->check())
+        <p>سلام {{ auth()->user()->name}} </p>
+
+        <a href="{{route('logout')}}">خروج</a>
+    @endif
+</div>
+<div class="m-5">
     @yield('content')
 </div>
 
