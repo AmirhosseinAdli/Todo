@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DoneTaskController;
+use App\Http\Controllers\NoteActionController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,6 @@ Route::group([
 //            ->only(['store','destroy']);
 //    });
 });
+
+Route::delete('tasks/{task}/notes/{note}/terminate', [NoteActionController::class, 'terminate'])->name('tasks.notes.terminate');
+Route::post('tasks/{task}/notes/{note}/restore', [NoteActionController::class, 'restore'])->name('tasks.notes.restore');

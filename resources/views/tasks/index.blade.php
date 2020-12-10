@@ -19,7 +19,10 @@
                     <span class="badge badge-primary">{{  $task->done ? 'انجام شده' : 'انجام نشده' }}</span>
                 </div>
                 <div class="card-footer d-flex flex-column">
-                    <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
+                    <h5>
+                        <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
+                    </h5>
+                    <p class="card-text">{{  verta($task->date)  }}</p>
                     <a href="{{route('tasks.show',[$task])}}">نمایش</a>
                     <a href="{{route('tasks.delete',[$task])}}">حذف از طریق متد get</a>
                     <form action="{{route('tasks.destroy',[$task])}}" method="post">

@@ -9,18 +9,36 @@
             </div>
             <a href="{{route('tasks.index')}}" class="btn btn-primary">بازگشت</a>
         </div>
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{  session('status')  }}
+            </div>
+        @endif
 
         <h2>یادداشت شما</h2>
-        @forelse($task->notes as $note)
+        @forelse($task->notes()->withTrashed()->get() as $note)
             <div class="card mb-4">
                 <div class="card-body">
                     <p class="card-text">{{  $note->text  }}</p>
                 </div>
-                <div class="card-footer">
-                    {!! Form::open(['route' => ['tasks.notes.destroy',$task->id,$note->id], 'method' => 'delete']) !!}
-                    {!! Form::submit('حذف',['class' => 'btn btn-danger mt-10']) !!}
-                    {!! Form::close() !!}
-                </div>
+                @if(is_null($note->deleted_at))
+                    <div class="card-footer">
+                        {!! Form::open(['route' => ['tasks.notes.destroy',$task->id,$note->id], 'method' => 'DELETE']) !!}
+                        {!! Form::submit('حذف',['class' => 'btn btn-danger mt-10']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                @else
+                    <div class="card-footer">
+                        {!! Form::open(['route' => ['tasks.notes.terminate',$task->id,$note->id], 'method' => 'delete']) !!}
+                        {!! Form::submit('حذف کلی',['class' => 'btn btn-warning mt-10']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="card-footer">
+                        {!! Form::open(['route' => ['tasks.notes.restore',$task->id,$note->id], 'method' => 'post']) !!}
+                        {!! Form::submit('بازنشانی',['class' => 'btn btn-info mt-10']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                @endif
             </div>
         @empty
             <p>هنوز یادداشتی برای این کار اضافه نشده است</p>

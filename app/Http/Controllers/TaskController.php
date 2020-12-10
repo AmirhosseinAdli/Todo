@@ -6,6 +6,7 @@ use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TaskController extends Controller
 {
@@ -25,6 +26,7 @@ class TaskController extends Controller
         $task = auth()->user()->tasks()->create([
             'title' => $request->title,
             'done' => $request->get('done', false),
+            'date' => Carbon::createFromTimestampMs($request->altField),
         ]);
         return redirect()->route('tasks.index')->with('status', 'کار با موفقیت ساخته شد');
     }
