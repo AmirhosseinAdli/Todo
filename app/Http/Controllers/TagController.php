@@ -10,7 +10,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = auth()->user()->tags;
         return view('tags.index', compact('tags'));
     }
 
