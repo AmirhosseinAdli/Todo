@@ -4,7 +4,10 @@
     <div class="container">
         <div class="mb-4 d-flex align-items-center justify-content-between">
             <h1>لیست کارها</h1>
-            <a href="{{route('tasks.create')}}" class="btn btn-primary">اضافه کردن</a>
+            <div>
+                <a href="{{route('tasks.create')}}" class="btn btn-primary">اضافه کردن</a>
+                <a href="{{route('tags.index')}}" class="btn btn-secondary">مدیریت تگ ها</a>
+            </div>
         </div>
 
         @if(session('status'))
@@ -22,6 +25,11 @@
                     <h5>
                         <a href="{{route('tasks.edit',[$task])}}">ویرایش</a>
                     </h5>
+                    {{--                    <p class="card-text">{{$task->tags->implode('name',', ')}}</p>--}}
+                    @foreach($task->tags as $tag)
+                        <span class="badge badge-primary"
+                              style="background-color: {{$tag->color}}">{{$tag->name}}</span>
+                    @endforeach
                     <p class="card-text">{{  verta($task->date)  }}</p>
                     <a href="{{route('tasks.show',[$task])}}">نمایش</a>
                     <a href="{{route('tasks.delete',[$task])}}">حذف از طریق متد get</a>

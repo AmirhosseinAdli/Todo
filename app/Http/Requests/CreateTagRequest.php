@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTaskRequest extends FormRequest
+class CreateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class CreateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'done' => 'required|boolean',
-            'altField' => 'required',
-            'tags' => 'sometimes|array',
-            'tags.*' => 'exists:tags,id',
+            'name' => 'required|string',
+            'color' => 'required|regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
         ];
     }
 }

@@ -56,13 +56,6 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-//        $username = $request->get('username');
-//        $password = $request->get('password');
-//        $user = User::query()
-//            ->where('email',$username)
-//            ->orWhere('mobile',$username)
-//            ->where('password',Hash::make($password))
-//            ->first();
         if ($this->attempt($request->get('username'), $request->get('password'))) //Auth::login($user);
         {
             $username = $request->get('username');

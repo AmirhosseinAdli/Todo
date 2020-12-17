@@ -24,6 +24,17 @@
                 <input type="text" class="form-control" id="title" name="title">
                 @error('title') <p class="m-0">{{$message}}</p> @enderror
             </div>
+
+            <div class="form-group">
+                <label for="tags">تگ ها</label>
+                <select name="tags[]" id="tags" class="custom-select" multiple>
+                    @forelse($tags as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+
             <div>
                 <label for="date">تاریخ</label>
                 <input type="text" class="form-control" id="date" name="date">
