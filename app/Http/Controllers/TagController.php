@@ -21,7 +21,7 @@ class TagController extends Controller
 
     public function store(CreateTagRequest $request)
     {
-        $tag = Tag::create($request->validated());
+        $tag = auth()->user()->tags()->create($request->validated());
         return redirect()->route('tags.index')->with('status', 'تگ جدید با موفقیت ساخته شد');
     }
 

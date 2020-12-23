@@ -74,6 +74,11 @@
 
         <a href="{{route('logout')}}">خروج</a>
     @endif
+
+    @can('admin')
+        <a href="{{route('users.index')}}">کاربران</a>
+    @endcan
+
 </div>
 <div class="m-5">
     @yield('content')

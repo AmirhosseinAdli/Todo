@@ -16,8 +16,8 @@ class CreateTagTaskTable extends Migration
     public function up()
     {
         Schema::create('tag_task', function (Blueprint $table) {
-            $table->foreignIdFor(Tag::class)->references('id')->on('tags');
-            $table->foreignIdFor(Task::class)->references('id')->on('tasks');
+            $table->foreignIdFor(Tag::class)->references('id')->on('tags')->cascadeOnDelete();
+            $table->foreignIdFor(Task::class)->references('id')->on('tasks')->cascadeOnDelete();
         });
     }
 

@@ -26,6 +26,8 @@ class UpdateTaskRequest extends FormRequest
         return [
             'title' => 'required|string',
             'done' => 'required|boolean',
+            'tags' => 'sometimes|array',
+            'tags.*' => 'exists:tags,id',
         ];
     }
 }

@@ -55,7 +55,10 @@
             $("#date").pDatepicker({
                 'persianDigit': false,
                 'format': 'YYYY/MM/DD H:m',
-                'altField': '#altField'
+                'altField': '#altField',
+                'timePicker': {
+                    'enabled': true
+                }
             });
         });
     </script>

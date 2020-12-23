@@ -10,7 +10,6 @@
 
         <form action="{{  route('login')  }}" method="post" enctype="multipart/form-data">
             @csrf
-
             <div class="form-group">
                 <label for="username">ایمیل یا شماره</label>
                 <input type="text" class="form-control" id="username" name="username">

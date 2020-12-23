@@ -6,6 +6,7 @@ use App\Http\Controllers\NoteActionController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,9 +40,16 @@ Route::group([
 //        Route::resource('notes',NoteController::class)
 //            ->only(['store','destroy']);
 //    });
+    Route::resource('users', UserController::class)
+        ->middleware('can:admin');
 });
 
 Route::delete('tasks/{task}/notes/{note}/terminate', [NoteActionController::class, 'terminate'])->name('tasks.notes.terminate');
 Route::post('tasks/{task}/notes/{note}/restore', [NoteActionController::class, 'restore'])->name('tasks.notes.restore');
 
 Route::resource('tags', TagController::class);
+
+Route::get('test', function () {
+    $task = \App\Models\Task::find(1);
+    return new \App\Mail\ReminderTaskMail($task);
+});

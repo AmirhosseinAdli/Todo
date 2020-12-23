@@ -25,6 +25,18 @@
                 <input type="text" class="form-control" id="title" name="title" value="{{$task->title}}">
                 @error('title') <p class="m-0">{{$message}}</p> @enderror
             </div>
+
+            <div class="form-group">
+                <label for="tags">تگ ها</label>
+                <select name="tags[]" id="tags" class="custom-select" multiple>
+                    @forelse($tags as $key => $value)
+                        <option value="{{$key}}"
+                                @if(in_array($key,$task->tags->pluck('id')->toArray())) selected @endif>{{$value}}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+
             <div class="form-check">
                 <input type="hidden" name="done" value="0">
                 <input type="checkbox" class="form-check-input" id="done" name="done" value="1"

@@ -31,4 +31,11 @@ class CreateTaskRequest extends FormRequest
             'tags.*' => 'exists:tags,id',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'tags.*' => 'تگ'
+        ];
+    }
 }
