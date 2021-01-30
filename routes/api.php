@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\API\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,21 @@ Route::get('/tasks', function () {
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth',
+    'as' => 'api.',
+
+], function ($router) {
+
+    Route::post('register', [AuthController::class,'register']);
+    Route::post('login', [AuthController::class,'login']);
+    Route::post('logout', [AuthController::class,'logout']);
+    Route::post('refresh', [AuthController::class,'refresh']);
+    Route::post('me', [AuthController::class,'me']);
+    Route::resource('tasks',TaskController::class);
+
 });
